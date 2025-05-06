@@ -12,12 +12,12 @@ public class WeatherAnalyzer {
 
     public static void main(String[] args) {
         try {
-            // Connect to the API
+            
             URL url = new URL(BASE_URL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
-            // Read the response
+            
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             StringBuilder jsonResponse = new StringBuilder();
             String inputLine;
@@ -27,10 +27,10 @@ public class WeatherAnalyzer {
             }
             in.close();
 
-            // Parse JSON response
+            
             JSONObject weatherData = new JSONObject(jsonResponse.toString());
 
-            // Extract data
+            
             JSONObject main = weatherData.getJSONObject("main");
             double temperature = main.getDouble("temp");
             int humidity = main.getInt("humidity");
@@ -38,7 +38,7 @@ public class WeatherAnalyzer {
             JSONObject weather = weatherData.getJSONArray("weather").getJSONObject(0);
             String description = weather.getString("description");
 
-            // Output
+           
             System.out.println("City: " + CITY);
             System.out.println("Temperature: " + temperature + "°C");
             System.out.println("Humidity: " + humidity + "%");
